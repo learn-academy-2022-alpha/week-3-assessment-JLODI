@@ -6,6 +6,13 @@
 
 <!-- HINT: Check the console in the browser developer tools for errors. The lines numbers may not match up with the line numbers in your text editor. -->
 
+<!-- 
+3 bugs in the code:
+- fragment tags were missing on line 72 and 89
+- drawCard was missing inside function call for onClick property of button
+- "this." needed to be added before drawCard and shuffle function calls on lines 76 and 79. The return came back undefined because it doesn't recognize the function beyond its current scope, and this must be used to refer to the function in the object "App"
+-->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -63,11 +70,12 @@
           // No need to change anything ABOVE this line ^
 
           return(
+            <>
               <h1>Draw a Card</h1>
-              <button onClick={}>
+              <button onClick={this.drawCard}>
                 Click to Draw a Card
               </button>
-              <button onClick={shuffle}>
+              <button onClick={this.shuffle}>
                 Return Cards and Shuffle Deck
               </button>
               <div style={handStyles}>
@@ -79,6 +87,7 @@
                   )
                 })}
               </div>
+            </>
           )
         }
       }
